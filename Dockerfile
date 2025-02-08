@@ -10,7 +10,7 @@ COPY package*.json ./
 # Ensure a clean install of dependencies
 RUN npm cache clean --force \
   && rm -rf node_modules package-lock.json \
-  && npm install
+  && npm install --legacy-peer-deps
 
 # Copy the rest of the application code
 COPY . .
