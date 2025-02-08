@@ -8,15 +8,13 @@ WORKDIR /app
 COPY package*.json ./
 
 # Ensure a clean install of dependencies
-RUN npm cache clean --force \
-  && rm -rf node_modules package-lock.json \
-  && npm install --legacy-peer-deps
+RUN npm install --legacy-peer-deps
 
 # Copy the rest of the application code
 COPY . .
 
 # Build the application with correct command
-RUN npm run build --configuration=production
+RUN npm run build --prod
 
 # Stage 2: Serve the application using Nginx
 FROM nginx:alpine
