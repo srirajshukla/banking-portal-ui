@@ -13,6 +13,9 @@ RUN npm install --legacy-peer-deps
 # Copy the rest of the application code
 COPY . .
 
+# Set higher memory limit for Node.js to prevent "JavaScript heap out of memory"
+ENV NODE_OPTIONS="--max-old-space-size=4096"
+
 # Build the application with correct command
 RUN npm run build --prod
 
